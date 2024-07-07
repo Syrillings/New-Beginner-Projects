@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calc</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box
+        }
+        .fun{
+            width:100%;
+            height: 100vh;
+            background-color: cornflowerblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calculator{
+            background-color: rgb(2, 2, 81);
+            padding:20px;
+            border-radius: 30px;
+          
+        }
+        .calculator input{
+            border:0;
+            outline:0;
+            width:60px;
+            height:60px;
+            border-radius:10px;
+            background: transparent;
+            cursor: pointer;
+            margin:10px;
+            box-shadow: -1px -1px 5px;
+            font-size:20px;
+        }
+        .display{
+         display:flex;
+         justify-content: right;
+         margin:20px;
+         width:370px;
+         background-color: white;
+        }
+        .display input{
+            text-align:right;
+            flex:1;
+            font: size 45px;
+
+        }
+        #kay{
+            width:60px;
+       
+        }
+        #rain{
+            box-shadow: none;
+        }
+        form input.operator {
+            color: pink;
+            box-shadow: black;
+        }
+        .botn{
+            color:red;
+            box-shadow: black;
+        }
+    </style>
+</head>
+<body>
+ <div class="fun">
+<div class="calculator">
+    <form>
+    <div class="display">
+    <input type="text" name="display" readonly id="rain">
+</div>
+<div >
+    <input type="button" value="AC" onclick="display.value = ''" class="operator" class="btn">
+    <input type="button" value="DEL" onclick="display.value = display.value.toString().slice(0,-1)" class="operator" class="btn">
+    <input type="button" value="." onclick="display.value += '.'" class="operator" class="btn">
+    <input type="button" value="/" onclick="display.value += '/'" class="operator" class="btn">
+    <input type="button" value="SIN"   onclick= "calculateSin()" class="operator" >
+   
+</div>
+<div>
+    <input type="button" value="7"  onclick="display.value += '7'" class="botn">
+    <input type="button" value="8"  onclick="display.value += '8'" class="botn">
+    <input type="button" value="9"  onclick="display.value += '9'" class="botn">
+    <input type="button" value="x"  onclick="display.value += '*'" class="operator" class="btn">
+    <input type="button" value="COS" onclick=  "calculatecos()" class="operator" class="btn">
+</div>
+<div>
+    <input type="button" value="4"  onclick="display.value += '4'"class="botn">
+    <input type="button" value="5"  onclick="display.value += '5'" class="botn">
+    <input type="button" value="6"  onclick="display.value += '6'" class="botn">
+    <input type="button" value="-" onclick="display.value += '-'"  class="operator" class="btn">
+    <input type="button" value="TAN" onclick= "calculatetan() " id=" tan" class="operator" class="btn">
+</div>
+<div>
+    <input type="button" value="1"  onclick="display.value += '1'" class="botn">
+    <input type="button" value="2"  onclick="display.value += '2'" class="botn">
+    <input type="button" value="3"  onclick="display.value += '3'" class="botn">
+    <input type="button" value="+"  onclick="display.value += '+'"  class="operator" class="btn">
+    <input type="button" value="SQRT" onclick=  "calculatesqrt()" class="operator" class="btn">
+</div>
+<div>
+    <input type="button" value="00" onclick="display.value += '00'" class="botn">
+    <input type="button" value="0" onclick="display.value += '0'" class="botn">
+    <input type="button" value="(" onclick="display.value += '('"   class="operator" class="btn" >
+    <input type="button" value=")" onclick="display.value += ')'"  class="operator" class="btn"  >
+    <input type="button" value="CBRT" onclick="calculatecbrt"  class="operator" class="btn"  >
+    
+    
+</div>
+<div>
+    <input type="button" value="Log" onclick="calculatelog()" class="operator">
+    <input type="button" value="1/x" onclick="calculateinverse()" class="operator">
+    <input type="button" value="x^2" onclick="calculatesquare()" class="operator">
+    <input type="button" value="x^3" onclick="calculatecube()" class="operator">
+    <input type="button" value="=" id="kay" onclick="display.value=eval(display.value)"  class="operator" class="btn">
+</div>
+</form>
+
+</div>
+ </div> 
+ <script>
+function calculateSin() {
+    const display = document.getElementById('rain');
+    const num = display.value*Math.PI/180;
+    const result = Math.sin(num);
+    display.value = result.toFixed(2);
+}
+function calculatecos(){
+    const display=document.getElementById('rain');
+    const num= display.value*Math.PI/180;
+    const result= Math.cos(num);
+    display.value = result.toFixed(2);
+}
+function calculatetan(){
+    const display = document.getElementById('rain');
+    const num = display.value*Math.PI/180;
+    const result = Math.tan(num);
+    display.value = result.toFixed(2);
+}
+function calculatesqrt(){
+    const display=document.getElementById('rain');
+    const num = display.value;
+    const result= Math.sqrt(num);
+    display.value = result.toFixed(2);
+}
+function calculatelog(){
+    const display=document.getElementById('rain');
+    const num  = display.value;
+    const result=Math.log(num);
+    display.value = result.toFixed(2);
+}
+function calculateinverse(){
+    const display= document.getElementById('rain');
+    const num = display.value;
+    const result = Math.pow(num, -1);
+    display.value = result;
+}
+function calculatesquare(){
+    const display=document.getElementById('rain');
+    const num=display.value;
+    const result= Math.pow(num, 2);
+    display.value=result;
+}
+function calculatecube(){
+    const display=document.getElementById('rain');
+    const num=display.value;
+    const result= Math.pow(num, 3);
+    display.value=result;
+}
+function calculatecbrt(){
+    const display=document.getElementById('rain');
+    const num=display.value;
+    const result=Math.pow(num, -3)
+    display.value=result.toFixed(2);
+}
+ </script>   
+</body>
+</html>
